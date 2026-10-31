@@ -196,6 +196,7 @@
             font-size: 24px;
             color: #ff2a85;
             margin-bottom: 6px;
+            display: block;
         }
         .cat-card p {
             font-size: 11px;
@@ -210,7 +211,7 @@
             border-bottom: 1px solid #222;
         }
         .hero h1 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
             color: #fff;
             margin-bottom: 10px;
@@ -268,6 +269,43 @@
             padding: 0 20px 20px 20px;
             min-height: 150px;
         }
+        .product-card {
+            background: #181818;
+            border: 1px solid #262626;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .product-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background: #222;
+        }
+        .product-info {
+            padding: 12px;
+        }
+        .product-title {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .new-price {
+            font-size: 15px;
+            font-weight: 700;
+            color: #ff2a85;
+        }
+        .add-cart-btn {
+            width: 100%;
+            background: #ff2a85;
+            color: #fff;
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+        }
         .empty-msg {
             grid-column: span 2;
             text-align: center;
@@ -314,7 +352,6 @@
             border-color: #ff2a85;
             color: #ff2a85;
         }
-        /* Payment Options Grid */
         .payment-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -330,7 +367,6 @@
             font-weight: 600;
             color: #ccc;
         }
-        /* Newsletter */
         .newsletter-input {
             width: 100%;
             padding: 12px;
@@ -351,7 +387,6 @@
             border-radius: 4px;
             cursor: pointer;
         }
-        /* Other Links */
         .footer-links {
             display: flex;
             justify-content: space-between;
@@ -429,21 +464,20 @@
         </div>
     </div>
 
-    <!-- Slide-out Menu Drawer (Triggered by 3 dots / hamburger icon) -->
+    <!-- Slide-out Menu Drawer -->
     <div class="menu-drawer" id="menuDrawer">
         <div class="menu-header">
             <div class="logo" style="font-size: 20px;">Naughty Nights</div>
             <div class="menu-close" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></div>
         </div>
         <ul class="menu-list">
-            <li class="menu-item" onclick="alert('Opening Men Toys')">Men Toys <i class="fa-solid fa-chevron-down"></i></li>
-            <li class="menu-item" onclick="alert('Opening Women Toys')">Women Toys <i class="fa-solid fa-chevron-down"></i></li>
-            <li class="menu-item" onclick="alert('Opening Couple Toys')">Couple Toys <i class="fa-solid fa-chevron-down"></i></li>
-            <li class="menu-item" onclick="alert('Opening Vibrators')">Vibrators <i class="fa-solid fa-chevron-down"></i></li>
-            <li class="menu-item" onclick="alert('Opening Dildos')">Dildos <i class="fa-solid fa-chevron-down"></i></li>
+            <li class="menu-item" onclick="alert('Men Toys Category')">Men Toys <i class="fa-solid fa-chevron-down"></i></li>
+            <li class="menu-item" onclick="alert('Women Toys Category')">Women Toys <i class="fa-solid fa-chevron-down"></i></li>
+            <li class="menu-item" onclick="alert('Couple Toys Category')">Couple Toys <i class="fa-solid fa-chevron-down"></i></li>
+            <li class="menu-item" onclick="alert('Vibrators Category')">Vibrators <i class="fa-solid fa-chevron-down"></i></li>
+            <li class="menu-item" onclick="alert('Dildos Category')">Dildos <i class="fa-solid fa-chevron-down"></i></li>
         </ul>
 
-        <!-- Login / Account Form inside Menu -->
         <div class="menu-login-box">
             <input type="tel" class="login-input" placeholder="Enter 10 digit registered mobile number" maxlength="10">
             <input type="password" class="login-input" placeholder="Enter your password">
@@ -463,7 +497,6 @@
             <div class="cat-card"><i class="fa-solid fa-venus"></i><p>Sex Doll</p></div>
             <div class="cat-card"><i class="fa-solid fa-wand-magic-sparkles"></i><p>Vibrator</p></div>
             <div class="cat-card"><i class="fa-solid fa-fire"></i><p>Dildo</p></div>
-            <!-- External Admit Card Link -->
             <a href="https://example.com/admit-card" target="_blank" class="cat-card">
                 <i class="fa-solid fa-id-card"></i>
                 <p>Admit Card</p>
@@ -474,7 +507,7 @@
         <div class="hero">
             <h1>Confidence, <span>Delivered</span> Discreetly</h1>
             <p>Intimate wellness essentials, discreetly packed and delivered to your door.</p>
-            <button class="shop-btn" onclick="alert('New products coming soon!')">Explore Store →</button>
+            <button class="shop-btn" onclick="window.scrollTo({top: 400, behavior: 'smooth'})">Explore Store →</button>
         </div>
 
         <!-- Trust Badges -->
@@ -486,14 +519,13 @@
 
         <!-- Products Section -->
         <div class="sec-title">FEATURED PRODUCTS</div>
-        <div class="product-grid" id="product-list">
-            <div class="empty-msg">No products available right now.</div>
+        <div class="product-grid" id="storeProductGrid">
+            <div class="empty-msg">No products available right now. Add products from admin panel (`admin.html`).</div>
         </div>
     </div>
 
     <!-- Footer Section -->
     <footer class="footer">
-        <!-- Follow Us -->
         <div class="footer-section">
             <div class="footer-title">Follow Us</div>
             <div class="social-icons">
@@ -503,7 +535,6 @@
             </div>
         </div>
 
-        <!-- Payment Options -->
         <div class="footer-section">
             <div class="footer-title">Payment Options</div>
             <div class="payment-grid">
@@ -518,21 +549,18 @@
             </div>
         </div>
 
-        <!-- Subscribe Newsletter -->
         <div class="footer-section">
             <div class="footer-title">Subscribe Newsletter</div>
             <input type="email" class="newsletter-input" placeholder="Enter Your Email Address">
             <button class="subscribe-btn" onclick="alert('Thank you for subscribing!')">Subscribe</button>
         </div>
 
-        <!-- Other Links -->
         <div class="footer-links">
             <a href="#">Track Order</a>
             <a href="#">Write Mail To Us</a>
             <a href="#">Live Chat</a>
         </div>
 
-        <!-- Copyright -->
         <div class="copyright">
             ALL RIGHTS RESERVED 2018-2026 NAUGHTY NIGHTS
         </div>
@@ -540,7 +568,7 @@
 
     <!-- Floating Buttons -->
     <div class="float-btns">
-        <a href="https://wa.me/916262770811" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
+        <a id="mainWaLink" href="https://wa.me/916262770811" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
         <div class="chat-float" onclick="alert('Live Support Agent is online!')"><i class="fa-solid fa-comment-dots"></i> Chat</div>
     </div>
 
@@ -549,6 +577,35 @@
             let drawer = document.getElementById('menuDrawer');
             drawer.classList.toggle('active');
         }
+
+        // Load dynamic data from Admin panel (localStorage)
+        window.addEventListener('DOMContentLoaded', () => {
+            let savedWa = localStorage.getItem('store_wa');
+            if(savedWa) {
+                document.getElementById('mainWaLink').href = "https://wa.me/" + savedWa;
+            }
+
+            let savedProducts = localStorage.getItem('store_products');
+            if(savedProducts) {
+                let products = JSON.parse(savedProducts);
+                let grid = document.getElementById('storeProductGrid');
+                if(products.length > 0) {
+                    grid.innerHTML = "";
+                    products.forEach(p => {
+                        grid.innerHTML += `
+                            <div class="product-card">
+                                <img src="${p.image}" class="product-img" alt="Product">
+                                <div class="product-info">
+                                    <div class="product-title">${p.title}</div>
+                                    <div class="new-price">${p.price}</div>
+                                    <button class="add-cart-btn" onclick="alert('Product added to cart successfully!')">Add To Cart</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+            }
+        });
     </script>
 </body>
 </html>
