@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Store Admin Dashboard</title>
+    <title>Store Admin Dashboard - Naughty Nights</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -35,12 +35,18 @@
 
         <hr style="border-color: #333; margin: 25px 0;">
 
-        <!-- UPI / Payment Settings -->
+        <!-- UPI & QR Code Gateway Settings -->
+        <h2><i class="fa-solid fa-qrcode"></i> Payment & UPI Gateway Settings</h2>
         <div class="form-group">
-            <label>UPI ID / Payment Gateway Details (e.g. yourupi@paytm)</label>
-            <input type="text" id="adminUpi" class="form-control" placeholder="merchant@upi">
+            <label>Change UPI ID (e.g. yourname@paytm / ybl)</label>
+            <input type="text" id="adminUpi" class="form-control" placeholder="newupi@handle">
         </div>
-        <button class="btn" onclick="saveUpi()">Save UPI ID</button>
+        <div class="form-group">
+            <label>Upload New QR Code Image (From Gallery)</label>
+            <input type="file" id="adminQrImage" class="form-control" accept="image/*" onchange="previewQrImage(event)">
+            <img id="qrPreview" class="preview-img" alt="QR Preview">
+        </div>
+        <button class="btn" onclick="saveUpiSettings()">Save UPI & QR Settings</button>
 
         <hr style="border-color: #333; margin: 25px 0;">
 
@@ -67,8 +73,10 @@
             <div id="adminProductList" style="margin-top: 10px;"></div>
         </div>
     </div>
-        <script>
+
+    <script>
         let base64Image = "";
+        let base64Qr = "";
 
         window.addEventListener('DOMContentLoaded', () => {
             let savedWa = localStorage.getItem('store_wa');
@@ -76,6 +84,14 @@
 
             let savedUpi = localStorage.getItem('store_upi');
             if(savedUpi) document.getElementById('adminUpi').value = savedUpi;
+
+            let savedQr = localStorage.getItem('store_qr');
+            if(savedQr) {
+                let preview = document.getElementById('qrPreview');
+                preview.src = savedQr;
+                preview.style.display = "block";
+                base64Qr = savedQr;
+            }
 
             renderAdminProducts();
         });
@@ -88,11 +104,28 @@
             }
         }
 
-        function saveUpi() {
+        function saveUpiSettings() {
             let upi = document.getElementById('adminUpi').value.trim();
             if(upi) { 
                 localStorage.setItem('store_upi', upi); 
-                alert("UPI ID updated successfully!"); 
+            }
+            if(base64Qr) {
+                localStorage.setItem('store_qr', base64Qr);
+            }
+            alert("UPI ID and QR Code settings updated successfully!");
+        }
+
+        function previewQrImage(event) {
+            let file = event.target.files[0];
+            if(file) {
+                let reader = new FileReader();
+                reader.onload = function(e) {
+                    base64Qr = e.target.result;
+                    let preview = document.getElementById('qrPreview');
+                    preview.src = base64Qr;
+                    preview.style.display = "block";
+                };
+                reader.readAsDataURL(file);
             }
         }
 
