@@ -44,17 +44,16 @@
         .trust-bar i { color: #ff2a85; font-size: 16px; }
 
         .sec-title { padding: 20px 20px 10px 20px; font-size: 18px; font-weight: 700; }
-        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 20px 20px 20px; min-height: 150px; }
-        .product-card { background: #181818; border: 1px solid #262626; border-radius: 12px; overflow: hidden; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 20px 20px 20px; }
+        .product-card { background: #181818; border: 1px solid #262626; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
         .product-img { width: 100%; height: 160px; object-fit: cover; background: #222; }
         .product-info { padding: 12px; }
-        .product-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #fff; }
+        .product-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #fff; line-height: 1.2; }
         .new-price { font-size: 15px; font-weight: 700; color: #ff2a85; margin-bottom: 8px; }
         .btn-group { display: flex; gap: 6px; }
         .add-cart-btn, .buy-now-btn { flex: 1; padding: 7px 4px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; }
         .add-cart-btn { background: #2b2b2b; color: #fff; border: 1px solid #444; }
         .buy-now-btn { background: #ff2a85; color: #fff; border: none; }
-        .empty-msg { grid-column: span 2; text-align: center; color: #666; font-size: 13px; padding: 30px; }
     </style>
 </head>
 <body>
@@ -119,10 +118,11 @@
 
         <div class="sec-title">FEATURED PRODUCTS</div>
         <div class="product-grid" id="storeProductGrid">
-            <div class="empty-msg">No products available right now. Add products from admin panel (`admin.html`).</div>
+            <!-- Products loaded dynamically via script -->
         </div>
-            </div>
-        <div class="checkout-modal" id="checkoutModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:3000; justify-content:center; align-items:center; padding:15px; overflow-y:auto;">
+                                                    </div>
+                <!-- Professional UPI Gateway Modal -->
+    <div class="checkout-modal" id="checkoutModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.92); z-index:3000; justify-content:center; align-items:center; padding:15px; overflow-y:auto;">
         <div class="checkout-box" style="background:#121212; padding:20px; border-radius:16px; width:100%; max-width:440px; border:1px solid #333; color:#fff; text-align:center;">
             <div class="gateway-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
                 <span style="color:#ff2a85; font-weight:700; font-size:18px;">NAUGHTY NIGHTS</span>
@@ -170,7 +170,7 @@
             <div style="font-size: 15px; font-weight: 600; margin-bottom: 12px; color: #fff;">Follow Us</div>
             <div style="display: flex; gap: 12px;">
                 <a href="#" style="background: #1f1f1f; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #fff; font-size: 20px; border: 1px solid #333; text-decoration: none;"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" id="footerWa" style="background: #1f1f1f; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #fff; font-size: 20px; border: 1px solid #333; text-decoration: none;"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://wa.me/918699684996" id="footerWa" style="background: #1f1f1f; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #fff; font-size: 20px; border: 1px solid #333; text-decoration: none;"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="#" style="background: #1f1f1f; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #fff; font-size: 20px; border: 1px solid #333; text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
@@ -214,24 +214,61 @@
     <script>
         let cartCount = 0;
 
+        // Permanent Products List (Visible to everyone on all devices)
+        const permanentProducts = [
+            {
+                title: "Baile Masturbator Cup For Men",
+                price: "₹2999",
+                image: "1000521726.jpg" // Aap chahein toh yahan apni image ka direct URL ya filename rakh sakte hain
+            },
+            {
+                title: "Leten King Pro Thrusting Masturbator",
+                price: "₹19999",
+                image: "1000521726_2.jpg"
+            },
+            {
+                title: "Marlo Stroker for Men",
+                price: "₹1499",
+                image: "1000521725.jpg"
+            },
+            {
+                title: "Strok King Automatic Stroker",
+                price: "₹9999",
+                image: "1000521725_2.jpg"
+            },
+            {
+                title: "Quickshot Massage Cup",
+                price: "₹1699",
+                image: "1000521725_3.jpg"
+            },
+            {
+                title: "Spinner Pleasure Gear",
+                price: "₹2499",
+                image: "1000521724.jpg"
+            },
+            {
+                title: "Schags Masturbation Can",
+                price: "₹4999",
+                image: "1000521724_2.jpg"
+            },
+            {
+                title: "Pocket Mini Sex Doll Masturbator with Hymen Blood",
+                price: "₹1999",
+                image: "1000521724_3.jpg"
+            },
+            {
+                title: "Lisa Lite Real-life Stroker",
+                price: "₹2199",
+                image: "1000521724_4.jpg"
+            }
+        ];
+
         function toggleMenu() { document.getElementById('menuDrawer').classList.toggle('active'); }
         function addToCart(title, price) { cartCount++; document.getElementById('cart-count').innerText = cartCount; alert(`"${title}" added to cart!`); }
         
         function openCheckout(title, price) {
             document.getElementById('modalPrice').innerText = price;
             document.getElementById('modalOrderId').innerText = "Order ID: NN-" + Math.floor(10 + Math.random() * 90);
-            
-            let customUpi = localStorage.getItem('store_upi');
-            if(customUpi) {
-                document.getElementById('displayUpiId').value = customUpi;
-                document.getElementById('displayQrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=${customUpi}`;
-            }
-
-            let customQr = localStorage.getItem('store_qr');
-            if(customQr) {
-                document.getElementById('displayQrImg').src = customQr;
-            }
-
             document.getElementById('checkoutModal').style.display = 'flex';
         }
 
@@ -257,43 +294,27 @@
         function openCart() { alert(cartCount === 0 ? "Cart is empty!" : `You have ${cartCount} item(s) in cart.`); }
 
         window.addEventListener('DOMContentLoaded', () => {
-            let savedWa = localStorage.getItem('store_wa');
-            if(savedWa) {
-                document.getElementById('mainWaLink').href = "https://wa.me/" + savedWa;
-                document.getElementById('footerWa').href = "https://wa.me/" + savedWa;
-            }
-
-            let savedProducts = localStorage.getItem('store_products');
             let grid = document.getElementById('storeProductGrid');
-            
-            if(savedProducts) {
-                let products = JSON.parse(savedProducts);
-                if(products.length > 0) {
-                    grid.innerHTML = "";
-                    products.forEach(p => {
-                        let t = p.title.replace(/'/g, "\\'");
-                        let pr = p.price.replace(/'/g, "\\'");
-                        grid.innerHTML += `
-                            <div class="product-card">
-                                <img src="${p.image}" class="product-img" alt="Product">
-                                <div class="product-info">
-                                    <div class="product-title">${p.title}</div>
-                                    <div class="new-price">${p.price}</div>
-                                    <div class="btn-group">
-                                        <button class="add-cart-btn" onclick="addToCart('${t}', '${pr}')">Cart</button>
-                                        <button class="buy-now-btn" onclick="openCheckout('${t}', '${pr}')">Buy Now</button>
-                                    </div>
-                                </div>
+            grid.innerHTML = "";
+
+            permanentProducts.forEach(p => {
+                let t = p.title.replace(/'/g, "\\'");
+                let pr = p.price.replace(/'/g, "\\'");
+                grid.innerHTML += `
+                    <div class="product-card">
+                        <img src="${p.image}" class="product-img" onerror="this.src='https://via.placeholder.com/150/181818/ff2a85?text=Naughty+Nights'" alt="Product">
+                        <div class="product-info">
+                            <div class="product-title">${p.title}</div>
+                            <div class="new-price">${p.price}</div>
+                            <div class="btn-group">
+                                <button class="add-cart-btn" onclick="addToCart('${t}', '${pr}')">Cart</button>
+                                <button class="buy-now-btn" onclick="openCheckout('${t}', '${pr}')">Buy Now</button>
                             </div>
-                        `;
-                    });
-                } else {
-                    grid.innerHTML = '<div class="empty-msg">No products available right now. Add products from admin panel (`admin.html`).</div>';
-                }
-            }
+                        </div>
+                    </div>
+                `;
+            });
         });
     </script>
 </body>
 </html>
-
-            
