@@ -142,18 +142,6 @@
             font-size: 13px;
         }
         .login-input::placeholder { color: #777; }
-        .captcha-box {
-            background: #f1f1f1;
-            color: #000;
-            padding: 10px 14px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            font-size: 12px;
-            font-weight: 500;
-        }
         .continue-btn {
             width: 100%;
             background: #ff2a85;
@@ -293,18 +281,38 @@
             font-size: 15px;
             font-weight: 700;
             color: #ff2a85;
+            margin-bottom: 8px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 6px;
         }
         .add-cart-btn {
-            width: 100%;
+            flex: 1;
+            background: #2b2b2b;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 7px 4px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .add-cart-btn:hover {
+            background: #ff2a85;
+            border-color: #ff2a85;
+        }
+        .buy-now-btn {
+            flex: 1;
             background: #ff2a85;
             color: #fff;
             border: none;
-            padding: 8px;
+            padding: 7px 4px;
             border-radius: 6px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 8px;
         }
         .empty-msg {
             grid-column: span 2;
@@ -313,185 +321,42 @@
             font-size: 13px;
             padding: 30px;
         }
-
-        /* Footer Section */
-        .footer {
-            background-color: #121212;
-            padding: 30px 20px 80px 20px;
-            border-top: 1px solid #222;
-            margin-top: 20px;
-        }
-        .footer-section {
-            margin-bottom: 25px;
-        }
-        .footer-title {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #fff;
-        }
-        .social-icons {
-            display: flex;
-            gap: 12px;
-        }
-        .social-icon-box {
-            background: #1f1f1f;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            color: #fff;
-            font-size: 20px;
-            border: 1px solid #333;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-        .social-icon-box:hover {
-            border-color: #ff2a85;
-            color: #ff2a85;
-        }
-        .payment-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-        }
-        .payment-badge {
-            background: #1f1f1f;
-            border: 1px solid #333;
-            padding: 8px 4px;
-            text-align: center;
-            border-radius: 4px;
-            font-size: 10px;
-            font-weight: 600;
-            color: #ccc;
-        }
-        .newsletter-input {
-            width: 100%;
-            padding: 12px;
-            background: #1c1c1c;
-            border: 1px solid #333;
-            color: #fff;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            font-size: 13px;
-        }
-        .subscribe-btn {
-            width: 100%;
-            background: #ff2a85;
-            color: white;
-            border: none;
-            padding: 12px;
-            font-weight: 600;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            color: #aaa;
-            margin-bottom: 20px;
-        }
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-        }
-        .footer-links a:hover { color: #ff2a85; }
-        .copyright {
-            background: #ff2a85;
-            color: white;
-            text-align: center;
-            padding: 10px;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            border-radius: 4px;
-        }
-
-        /* Floating Buttons */
-        .float-btns {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 999;
-        }
-        .wa-float {
-            background: #25d366;
-            color: white;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            text-decoration: none;
-        }
-        .chat-float {
-            background: #ff2a85;
-            color: white;
-            padding: 0 16px;
-            height: 45px;
-            border-radius: 25px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(255,42,133,0.4);
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar -->
     <div class="top-bar">
         <div><i class="fa-solid fa-gift"></i><b> 100% Discreet</b></div>
     </div>
 
-    <!-- Navbar -->
     <div class="navbar">
         <div class="logo">Naughty Nights</div>
         <div class="nav-icons">
-            <span onclick="alert('Cart is empty!')"><i class="fa-solid fa-cart-shopping"></i><span class="badge-count" id="cart-count">0</span></span>
+            <span onclick="openCart()"><i class="fa-solid fa-cart-shopping"></i><span class="badge-count" id="cart-count">0</span></span>
             <i class="fa-solid fa-bars" onclick="toggleMenu()"></i>
         </div>
     </div>
 
-    <!-- Slide-out Menu Drawer -->
     <div class="menu-drawer" id="menuDrawer">
         <div class="menu-header">
             <div class="logo" style="font-size: 20px;">Naughty Nights</div>
             <div class="menu-close" onclick="toggleMenu()"><i class="fa-solid fa-xmark"></i></div>
         </div>
         <ul class="menu-list">
-            <li class="menu-item" onclick="alert('Men Toys Category')">Men Toys <i class="fa-solid fa-chevron-down"></i></li>
-            <li class="menu-item" onclick="alert('Women Toys Category')">Women Toys <i class="fa-solid fa-chevron-down"></i></li>
-            <li class="menu-item" onclick="alert('Couple Toys Category')">Couple Toys <i class="fa-solid fa-chevron-down"></i></li>
-            <li class="menu-item" onclick="alert('Vibrators Category')">Vibrators <i class="fa-solid fa-chevron-down"></i></li>
-            <li class="menu-item" onclick="alert('Dildos Category')">Dildos <i class="fa-solid fa-chevron-down"></i></li>
+            <li class="menu-item">Men Toys <i class="fa-solid fa-chevron-down"></i></li>
+            <li class="menu-item">Women Toys <i class="fa-solid fa-chevron-down"></i></li>
+            <li class="menu-item">Couple Toys <i class="fa-solid fa-chevron-down"></i></li>
+            <li class="menu-item">Vibrators <i class="fa-solid fa-chevron-down"></i></li>
+            <li class="menu-item">Dildos <i class="fa-solid fa-chevron-down"></i></li>
         </ul>
-
         <div class="menu-login-box">
-            <input type="tel" class="login-input" placeholder="Enter 10 digit registered mobile number" maxlength="10">
+            <input type="tel" class="login-input" placeholder="Enter 10 digit mobile number" maxlength="10">
             <input type="password" class="login-input" placeholder="Enter your password">
-            <div class="captcha-box">
-                <span><input type="checkbox" style="margin-right: 8px;"> I'm not a robot</span>
-                <i class="fa-solid fa-rotate-right" style="color: #666; font-size: 14px;"></i>
-            </div>
-            <button class="continue-btn" onclick="alert('Login attempted!')">Continue</button>
+            <button class="continue-btn" onclick="alert('Login successful!')">Continue</button>
         </div>
     </div>
 
-    <!-- Main Store View -->
     <div id="store-view">
-        <!-- Categories -->
         <div class="categories">
             <div class="cat-card"><i class="fa-solid fa-mars"></i><p>Masturbator</p></div>
             <div class="cat-card"><i class="fa-solid fa-venus"></i><p>Sex Doll</p></div>
@@ -503,82 +368,135 @@
             </a>
         </div>
 
-        <!-- Hero Section -->
         <div class="hero">
             <h1>Confidence, <span>Delivered</span> Discreetly</h1>
             <p>Intimate wellness essentials, discreetly packed and delivered to your door.</p>
             <button class="shop-btn" onclick="window.scrollTo({top: 400, behavior: 'smooth'})">Explore Store →</button>
         </div>
 
-        <!-- Trust Badges -->
         <div class="trust-bar">
             <div><i class="fa-solid fa-box-archive"></i><span>100% Discreet Packaging</span></div>
             <div><i class="fa-solid fa-truck-fast"></i><span>COD Available</span></div>
             <div><i class="fa-solid fa-face-smile"></i><span>2L+ Happy Customers</span></div>
         </div>
 
-        <!-- Products Section -->
         <div class="sec-title">FEATURED PRODUCTS</div>
         <div class="product-grid" id="storeProductGrid">
             <div class="empty-msg">No products available right now. Add products from admin panel (`admin.html`).</div>
         </div>
     </div>
+        <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-box" style="background: #181818; padding: 25px; border-radius: 12px; width: 100%; max-width: 420px; border: 1px solid #333;">
+            <h2 style="color: #ff2a85; margin-bottom: 15px; font-size: 18px; text-align: center;">Secure Checkout Gateway</h2>
+            <p id="checkoutItemInfo" style="font-size: 13px; color: #aaa; margin-bottom: 15px; text-align: center;"></p>
+            
+            <input type="text" class="checkout-input" id="custName" placeholder="Full Name" style="width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px; margin-bottom: 10px; font-size: 13px;">
+            <input type="tel" class="checkout-input" id="custPhone" placeholder="Mobile Number" style="width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px; margin-bottom: 10px; font-size: 13px;">
+            <input type="text" class="checkout-input" id="custAddress" placeholder="Delivery Address" style="width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px; margin-bottom: 10px; font-size: 13px;">
 
-    <!-- Footer Section -->
-    <footer class="footer">
-        <div class="footer-section">
-            <div class="footer-title">Follow Us</div>
-            <div class="social-icons">
-                <a href="#" class="social-icon-box"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="social-icon-box"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="#" class="social-icon-box"><i class="fa-brands fa-instagram"></i></a>
+            <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px;">Select Payment Option:</div>
+            
+            <label class="pay-option" style="background: #222; border: 1px solid #444; padding: 12px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 14px;">
+                <input type="radio" name="payMethod" value="upi" checked style="accent-color: #ff2a85;"> 
+                <span><b>Online UPI / QR Code</b> (GPay, PhonePe, Paytm)</span>
+            </label>
+            
+            <label class="pay-option" style="background: #222; border: 1px solid #444; padding: 12px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 14px;">
+                <input type="radio" name="payMethod" value="cod" style="accent-color: #ff2a85;"> 
+                <span><b>Cash on Delivery (COD)</b> (Discreet packaging)</span>
+            </label>
+
+            <button class="continue-btn" style="width: 100%; background: #ff2a85; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 10px;" onclick="processPayment()">Proceed to Pay / Order</button>
+            <button class="continue-btn" style="width: 100%; background:#444; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 8px;" onclick="closeCheckout()">Cancel</button>
+        </div>
+    </div>
+
+    <footer class="footer" style="background-color: #121212; padding: 30px 20px 80px 20px; border-top: 1px solid #222; margin-top: 20px;">
+        <div class="footer-section" style="margin-bottom: 25px;">
+            <div class="footer-title" style="font-size: 15px; font-weight: 600; margin-bottom: 12px; color: #fff;">Follow Us</div>
+            <div class="social-icons" style="display: flex; gap: 12px;">
+                <a href="#" class="social-icon-box" style="background: #1f1f1f; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #fff; font-size: 20px; border: 1px solid #333; text-decoration: none;"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-icon-box" style="background: #1f1f1f; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #fff; font-size: 20px; border: 1px solid #333; text-decoration: none;"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" class="social-icon-box" style="background: #1f1f1f; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #fff; font-size: 20px; border: 1px solid #333; text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
             </div>
         </div>
 
-        <div class="footer-section">
-            <div class="footer-title">Payment Options</div>
-            <div class="payment-grid">
-                <div class="payment-badge">VISA</div>
-                <div class="payment-badge">MasterCard</div>
-                <div class="payment-badge">AMEX</div>
-                <div class="payment-badge">DISCOVER</div>
-                <div class="payment-badge">PayPal</div>
-                <div class="payment-badge">Net Banking</div>
-                <div class="payment-badge">Offline</div>
-                <div class="payment-badge">Cash Deposit</div>
+        <div class="footer-section" style="margin-bottom: 25px;">
+            <div class="footer-title" style="font-size: 15px; font-weight: 600; margin-bottom: 12px; color: #fff;">Payment Options</div>
+            <div class="payment-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
+                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">VISA</div>
+                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">MasterCard</div>
+                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">UPI</div>
+                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">Paytm</div>
+                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">PayPal</div>
+                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">Net Banking</div>
+                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">COD</div>
+                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">GPay</div>
             </div>
         </div>
 
-        <div class="footer-section">
-            <div class="footer-title">Subscribe Newsletter</div>
-            <input type="email" class="newsletter-input" placeholder="Enter Your Email Address">
-            <button class="subscribe-btn" onclick="alert('Thank you for subscribing!')">Subscribe</button>
-        </div>
-
-        <div class="footer-links">
-            <a href="#">Track Order</a>
-            <a href="#">Write Mail To Us</a>
-            <a href="#">Live Chat</a>
-        </div>
-
-        <div class="copyright">
+        <div class="copyright" style="background: #ff2a85; color: white; text-align: center; padding: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; border-radius: 4px;">
             ALL RIGHTS RESERVED 2018-2026 NAUGHTY NIGHTS
         </div>
     </footer>
 
-    <!-- Floating Buttons -->
-    <div class="float-btns">
-        <a id="mainWaLink" href="https://wa.me/916262770811" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
-        <div class="chat-float" onclick="alert('Live Support Agent is online!')"><i class="fa-solid fa-comment-dots"></i> Chat</div>
+    <div class="float-btns" style="position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 999;">
+        <a id="mainWaLink" href="https://wa.me/916262770811" target="_blank" class="wa-float" style="background: #25d366; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none;"><i class="fa-brands fa-whatsapp"></i></a>
+        <div class="chat-float" onclick="alert('Live Support Agent is online!')" style="background: #ff2a85; color: white; padding: 0 16px; height: 45px; border-radius: 25px; display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; box-shadow: 0 4px 10px rgba(255,42,133,0.4); cursor: pointer;"><i class="fa-solid fa-comment-dots"></i> Chat</div>
     </div>
 
     <script>
+        let cartCount = 0;
+        let selectedProductForCheckout = null;
+
         function toggleMenu() {
             let drawer = document.getElementById('menuDrawer');
             drawer.classList.toggle('active');
         }
 
-        // Load dynamic data from Admin panel (localStorage)
+        function addToCart(title, price) {
+            cartCount++;
+            document.getElementById('cart-count').innerText = cartCount;
+            alert(`"${title}" successfully added to cart!`);
+        }
+
+        function openCheckout(title, price) {
+            selectedProductForCheckout = { title, price };
+            document.getElementById('checkoutItemInfo').innerText = `Product: ${title} | Price: ${price}`;
+            document.getElementById('checkoutModal').style.display = 'flex';
+        }
+
+        function closeCheckout() {
+            document.getElementById('checkoutModal').style.display = 'none';
+        }
+
+        function processPayment() {
+            let name = document.getElementById('custName').value.trim();
+            let phone = document.getElementById('custPhone').value.trim();
+            let address = document.getElementById('custAddress').value.trim();
+            let payMethod = document.querySelector('input[name="payMethod"]:checked').value;
+
+            if(!name || !phone || !address) {
+                alert("Please fill in your delivery details!");
+                return;
+            }
+
+            if(payMethod === 'upi') {
+                alert(`Redirecting to Secure UPI Payment Gateway for ${selectedProductForCheckout.price}... Please complete payment.`);
+            } else {
+                alert(`Order placed successfully via Cash on Delivery (COD) for ${selectedProductForCheckout.title}!`);
+            }
+            closeCheckout();
+        }
+
+        function openCart() {
+            if(cartCount === 0) {
+                alert("Your cart is empty!");
+            } else {
+                alert(`You have ${cartCount} item(s) in your cart.`);
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             let savedWa = localStorage.getItem('store_wa');
             if(savedWa) {
@@ -592,13 +510,19 @@
                 if(products.length > 0) {
                     grid.innerHTML = "";
                     products.forEach(p => {
+                        let safeTitle = p.title.replace(/'/g, "\\'");
+                        let safePrice = p.price.replace(/'/g, "\\'");
+                        
                         grid.innerHTML += `
                             <div class="product-card">
                                 <img src="${p.image}" class="product-img" alt="Product">
                                 <div class="product-info">
                                     <div class="product-title">${p.title}</div>
                                     <div class="new-price">${p.price}</div>
-                                    <button class="add-cart-btn" onclick="alert('Product added to cart successfully!')">Add To Cart</button>
+                                    <div class="btn-group">
+                                        <button class="add-cart-btn" onclick="addToCart('${safeTitle}', '${safePrice}')">Add Cart</button>
+                                        <button class="buy-now-btn" onclick="openCheckout('${safeTitle}', '${safePrice}')">Buy Now</button>
+                                    </div>
                                 </div>
                             </div>
                         `;
