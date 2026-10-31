@@ -7,327 +7,84 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        body {
-            background-color: #0b0b0b;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-        /* Top Bar */
-        .top-bar {
-            background: linear-gradient(90deg, #ff2a85, #ff5eaf);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 8px 16px;
-            font-size: 13px;
-            font-weight: 500;
-        }
-        .top-bar div {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        /* Navbar */
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 20px;
-            background-color: #121212;
-            border-bottom: 1px solid #222;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .logo {
-            font-size: 26px;
-            font-weight: 700;
-            color: #ff2a85;
-            font-style: italic;
-            letter-spacing: 1px;
-        }
-        .nav-icons {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        .nav-icons span {
-            position: relative;
-        }
-        .badge-count {
-            position: absolute;
-            top: -8px;
-            right: -10px;
-            background: #ff2a85;
-            color: white;
-            font-size: 10px;
-            padding: 2px 5px;
-            border-radius: 50%;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: #0b0b0b; color: #ffffff; overflow-x: hidden; }
+        .top-bar { background: linear-gradient(90deg, #ff2a85, #ff5eaf); display: flex; justify-content: center; align-items: center; padding: 8px 16px; font-size: 13px; font-weight: 500; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background-color: #121212; border-bottom: 1px solid #222; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 26px; font-weight: 700; color: #ff2a85; font-style: italic; letter-spacing: 1px; }
+        .nav-icons { display: flex; align-items: center; gap: 18px; font-size: 18px; cursor: pointer; position: relative; }
+        .badge-count { position: absolute; top: -8px; right: -10px; background: #ff2a85; color: white; font-size: 10px; padding: 2px 5px; border-radius: 50%; }
 
-        /* Slide-out Menu Drawer */
-        .menu-drawer {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background-color: #121212;
-            z-index: 2000;
-            transition: 0.3s ease-in-out;
-            overflow-y: auto;
-        }
-        .menu-drawer.active {
-            left: 0;
-        }
-        .menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 20px;
-            background: #181818;
-            border-bottom: 1px solid #262626;
-        }
-        .menu-close {
-            font-size: 22px;
-            color: #ff2a85;
-            cursor: pointer;
-        }
-        .menu-list {
-            list-style: none;
-        }
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 20px;
-            border-bottom: 1px solid #1c1c1c;
-            font-size: 15px;
-            font-weight: 500;
-            color: #fff;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .menu-item:hover {
-            color: #ff2a85;
-            background: #161616;
-        }
-        .menu-item i {
-            color: #888;
-            font-size: 14px;
-        }
+        /* Slide-out Menu */
+        .menu-drawer { position: fixed; top: 0; left: -100%; width: 100%; height: 100%; background-color: #121212; z-index: 2000; transition: 0.3s ease-in-out; overflow-y: auto; }
+        .menu-drawer.active { left: 0; }
+        .menu-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; background: #181818; border-bottom: 1px solid #262626; }
+        .menu-close { font-size: 22px; color: #ff2a85; cursor: pointer; }
+        .menu-list { list-style: none; }
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; border-bottom: 1px solid #1c1c1c; font-size: 15px; font-weight: 500; color: #fff; }
 
-        /* Login Section inside Menu */
-        .menu-login-box {
-            padding: 25px 20px;
-            background: #0f0f0f;
-            border-top: 1px solid #222;
-        }
-        .login-input {
-            width: 100%;
-            padding: 14px;
-            background: #1c1c1c;
-            border: 1px solid #333;
-            color: #fff;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            font-size: 13px;
-        }
-        .login-input::placeholder { color: #777; }
-        .continue-btn {
-            width: 100%;
-            background: #ff2a85;
-            color: white;
-            border: none;
-            padding: 14px;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 15px;
-            box-shadow: 0 4px 12px rgba(255, 42, 133, 0.3);
-        }
-
-        /* Categories Scroll */
-        .categories {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            padding: 15px 20px;
-            background: #161616;
-            scrollbar-width: none;
-        }
+        /* Categories */
+        .categories { display: flex; gap: 15px; overflow-x: auto; padding: 15px 20px; background: #161616; scrollbar-width: none; }
         .categories::-webkit-scrollbar { display: none; }
-        .cat-card {
-            background: #202020;
-            min-width: 90px;
-            padding: 12px 8px;
-            border-radius: 12px;
-            text-align: center;
-            cursor: pointer;
-            border: 1px solid #333;
-            transition: 0.3s;
-            text-decoration: none;
-            color: #fff;
-        }
-        .cat-card:hover {
-            border-color: #ff2a85;
-        }
-        .cat-card i {
-            font-size: 24px;
-            color: #ff2a85;
-            margin-bottom: 6px;
-            display: block;
-        }
-        .cat-card p {
-            font-size: 11px;
-            font-weight: 500;
-        }
-        /* Hero Banner */
-        .hero {
-            background: linear-gradient(135deg, #2a0815, #111);
-            padding: 30px 20px;
-            text-align: center;
-            position: relative;
-            border-bottom: 1px solid #222;
-        }
-        .hero h1 {
-            font-size: 26px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 10px;
-        }
+        .cat-card { background: #202020; min-width: 90px; padding: 12px 8px; border-radius: 12px; text-align: center; border: 1px solid #333; text-decoration: none; color: #fff; }
+        .cat-card i { font-size: 24px; color: #ff2a85; margin-bottom: 6px; display: block; }
+        .cat-card p { font-size: 11px; font-weight: 500; }
+
+        /* Hero */
+        .hero { background: linear-gradient(135deg, #2a0815, #111); padding: 30px 20px; text-align: center; border-bottom: 1px solid #222; }
+        .hero h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 10px; }
         .hero h1 span { color: #ff2a85; }
-        .hero p {
-            font-size: 13px;
-            color: #aaa;
-            margin-bottom: 20px;
-        }
-        .shop-btn {
-            background: linear-gradient(90deg, #ff2a85, #ff5eaf);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 42, 133, 0.4);
-        }
-        /* Trust Badges Bar */
-        .trust-bar {
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 10px;
-            background: #141414;
-            border-bottom: 1px solid #222;
-            font-size: 11px;
-            text-align: center;
-            color: #ccc;
-        }
-        .trust-bar div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-        }
-        .trust-bar i {
-            color: #ff2a85;
-            font-size: 16px;
-        }
-        /* Section Header */
-        .sec-title {
-            padding: 20px 20px 10px 20px;
-            font-size: 18px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        /* Product Grid */
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 0 20px 20px 20px;
-            min-height: 150px;
-        }
-        .product-card {
-            background: #181818;
-            border: 1px solid #262626;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .product-img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            background: #222;
-        }
-        .product-info {
-            padding: 12px;
-        }
-        .product-title {
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        .new-price {
-            font-size: 15px;
-            font-weight: 700;
-            color: #ff2a85;
-            margin-bottom: 8px;
-        }
-        .btn-group {
-            display: flex;
-            gap: 6px;
-        }
-        .add-cart-btn {
-            flex: 1;
-            background: #2b2b2b;
-            color: #fff;
-            border: 1px solid #444;
-            padding: 7px 4px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .add-cart-btn:hover {
-            background: #ff2a85;
-            border-color: #ff2a85;
-        }
-        .buy-now-btn {
-            flex: 1;
-            background: #ff2a85;
-            color: #fff;
-            border: none;
-            padding: 7px 4px;
-            border-radius: 6px;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .empty-msg {
-            grid-column: span 2;
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-            padding: 30px;
-        }
+        .hero p { font-size: 13px; color: #aaa; margin-bottom: 20px; }
+        .shop-btn { background: linear-gradient(90deg, #ff2a85, #ff5eaf); color: white; border: none; padding: 12px 30px; font-size: 14px; font-weight: 600; border-radius: 30px; cursor: pointer; }
+
+        /* Products Grid */
+        .sec-title { padding: 20px 20px 10px 20px; font-size: 18px; font-weight: 700; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 0 20px 20px 20px; min-height: 150px; }
+        .product-card { background: #181818; border: 1px solid #262626; border-radius: 12px; overflow: hidden; }
+        .product-img { width: 100%; height: 160px; object-fit: cover; background: #222; }
+        .product-info { padding: 12px; }
+        .product-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+        .new-price { font-size: 15px; font-weight: 700; color: #ff2a85; margin-bottom: 8px; }
+        .btn-group { display: flex; gap: 6px; }
+        .add-cart-btn, .buy-now-btn { flex: 1; padding: 7px 4px; border-radius: 6px; font-size: 11px; font-weight: 600; cursor: pointer; }
+        .add-cart-btn { background: #2b2b2b; color: #fff; border: 1px solid #444; }
+        .buy-now-btn { background: #ff2a85; color: #fff; border: none; }
+        .empty-msg { grid-column: span 2; text-align: center; color: #666; font-size: 13px; padding: 30px; }
+
+        /* Professional Gateway Modal Style */
+        .checkout-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 3000; justify-content: center; align-items: center; padding: 15px; overflow-y: auto; }
+        .checkout-box { background: #121212; padding: 20px; border-radius: 16px; width: 100%; max-width: 440px; border: 1px solid #333; color: #fff; text-align: center; }
+        .gateway-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .gateway-header span { color: #ff2a85; font-weight: 700; font-size: 18px; }
+        .secure-badge { background: rgba(0,200,100,0.1); color: #00c864; border: 1px solid #00c864; font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+        
+        .amount-box { background: #1a1a1a; padding: 15px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #262626; }
+        .amount-title { font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .amount-val { font-size: 28px; font-weight: 700; color: #00c864; margin: 5px 0; }
+        .timer-val { font-size: 18px; font-weight: 700; color: #ff3344; letter-spacing: 1px; }
+
+        .pay-app-btn { display: flex; align-items: center; justify-content: space-between; background: #1c1c1c; border: 1px solid #333; padding: 12px 15px; border-radius: 10px; margin-bottom: 10px; cursor: pointer; text-decoration: none; color: #fff; font-weight: 500; font-size: 14px; }
+        .pay-app-btn i { color: #888; }
+
+        .qr-section { background: #181818; padding: 15px; border-radius: 12px; margin: 15px 0; border: 1px solid #333; }
+        .qr-img { width: 160px; height: 160px; background: #fff; padding: 8px; border-radius: 8px; margin: 10px auto; display: block; object-fit: contain; }
+
+        .utr-box { background: #181818; padding: 15px; border-radius: 12px; margin-top: 15px; text-align: left; border: 1px solid #333; }
+        .upi-copy-row { display: flex; gap: 8px; margin: 8px 0 15px 0; }
+        .upi-input { flex: 1; background: #222; border: 1px solid #444; color: #fff; padding: 10px; border-radius: 6px; font-size: 13px; }
+        .copy-btn { background: #ff2a85; color: #fff; border: none; padding: 0 15px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 13px; }
+        .utr-input { width: 100%; background: #222; border: 1px solid #444; color: #fff; padding: 12px; border-radius: 6px; margin: 8px 0 12px 0; font-size: 13px; }
+        .submit-utr-btn { width: 100%; background: linear-gradient(90deg, #00c864, #00a050); color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 700; font-size: 14px; cursor: pointer; }
+
+        /* Footer */
+        .footer { background-color: #121212; padding: 30px 20px 80px 20px; border-top: 1px solid #222; margin-top: 20px; text-align: center; font-size: 12px; color: #777; }
+        .copyright { background: #ff2a85; color: white; padding: 10px; font-size: 10px; font-weight: 600; border-radius: 4px; margin-top: 20px; }
+        .wa-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; z-index: 999; text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <div><i class="fa-solid fa-gift"></i><b> 100% Discreet</b></div>
-    </div>
+    <div class="top-bar"><div><i class="fa-solid fa-gift"></i><b> 100% Discreet</b></div></div>
 
     <div class="navbar">
         <div class="logo">Naughty Nights</div>
@@ -346,162 +103,126 @@
             <li class="menu-item">Men Toys <i class="fa-solid fa-chevron-down"></i></li>
             <li class="menu-item">Women Toys <i class="fa-solid fa-chevron-down"></i></li>
             <li class="menu-item">Couple Toys <i class="fa-solid fa-chevron-down"></i></li>
-            <li class="menu-item">Vibrators <i class="fa-solid fa-chevron-down"></i></li>
-            <li class="menu-item">Dildos <i class="fa-solid fa-chevron-down"></i></li>
         </ul>
-        <div class="menu-login-box">
-            <input type="tel" class="login-input" placeholder="Enter 10 digit mobile number" maxlength="10">
-            <input type="password" class="login-input" placeholder="Enter your password">
-            <button class="continue-btn" onclick="alert('Login successful!')">Continue</button>
-        </div>
     </div>
 
-    <div id="store-view">
-        <div class="categories">
-            <div class="cat-card"><i class="fa-solid fa-mars"></i><p>Masturbator</p></div>
-            <div class="cat-card"><i class="fa-solid fa-venus"></i><p>Sex Doll</p></div>
-            <div class="cat-card"><i class="fa-solid fa-wand-magic-sparkles"></i><p>Vibrator</p></div>
-            <div class="cat-card"><i class="fa-solid fa-fire"></i><p>Dildo</p></div>
-            <a href="https://example.com/admit-card" target="_blank" class="cat-card">
-                <i class="fa-solid fa-id-card"></i>
-                <p>Admit Card</p>
+    <div class="categories">
+        <div class="cat-card"><i class="fa-solid fa-mars"></i><p>Masturbator</p></div>
+        <div class="cat-card"><i class="fa-solid fa-venus"></i><p>Sex Doll</p></div>
+        <div class="cat-card"><i class="fa-solid fa-wand-magic-sparkles"></i><p>Vibrator</p></div>
+        <div class="cat-card"><i class="fa-solid fa-fire"></i><p>Dildo</p></div>
+        <a href="https://example.com/admit-card" target="_blank" class="cat-card"><i class="fa-solid fa-id-card"></i><p>Admit Card</p></a>
+    </div>
+
+    <div class="hero">
+        <h1>Confidence, <span>Delivered</span> Discreetly</h1>
+        <p>Intimate wellness essentials, securely packed.</p>
+        <button class="shop-btn" onclick="window.scrollTo({top: 400, behavior: 'smooth'})">Explore Store →</button>
+    </div>
+
+    <div class="sec-title">FEATURED PRODUCTS</div>
+    <div class="product-grid" id="storeProductGrid">
+        <div class="empty-msg">No products available. Add products via Admin Panel (`admin.html`).</div>
+    </div>
+        <!-- Professional UPI Gateway Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-box">
+            <div class="gateway-header">
+                <span>NAUGHTY NIGHTS</span>
+                <div class="secure-badge"><i class="fa-solid fa-shield-halved"></i> 256-Bit Secure</div>
+            </div>
+
+            <div class="amount-box">
+                <div class="amount-title">Total Payable Amount</div>
+                <div class="amount-val" id="modalPrice">₹1,050.00</div>
+                <div id="modalOrderId" style="font-size: 12px; color: #888; margin-bottom: 5px;">Order ID: NN-88</div>
+                <div class="timer-val" id="timerDisplay">09:56</div>
+            </div>
+
+            <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px; text-align: left;">⚡ Pay via UPI Apps</div>
+            <a href="#" class="pay-app-btn" onclick="alert('Opening Paytm UPI...')">
+                <span><i class="fa-solid fa-wallet" style="color:#00baf2; margin-right:8px;"></i> Paytm UPI</span> <i class="fa-solid fa-chevron-right"></i>
             </a>
-        </div>
+            <a href="#" class="pay-app-btn" onclick="alert('Opening PhonePe / GPay...')">
+                <span><i class="fa-solid fa-mobile-screen" style="color:#5f259f; margin-right:8px;"></i> PhonePe / Google Pay</span> <i class="fa-solid fa-chevron-right"></i>
+            </a>
 
-        <div class="hero">
-            <h1>Confidence, <span>Delivered</span> Discreetly</h1>
-            <p>Intimate wellness essentials, discreetly packed and delivered to your door.</p>
-            <button class="shop-btn" onclick="window.scrollTo({top: 400, behavior: 'smooth'})">Explore Store →</button>
-        </div>
+            <div class="qr-section">
+                <div style="font-size: 12px; color: #aaa; margin-bottom: 5px;">Scan QR Code to Pay Instantly</div>
+                <img id="displayQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=vish87667@ptaxis" class="qr-img" alt="QR Code">
+            </div>
 
-        <div class="trust-bar">
-            <div><i class="fa-solid fa-box-archive"></i><span>100% Discreet Packaging</span></div>
-            <div><i class="fa-solid fa-truck-fast"></i><span>COD Available</span></div>
-            <div><i class="fa-solid fa-face-smile"></i><span>2L+ Happy Customers</span></div>
-        </div>
+            <div class="utr-box">
+                <div style="font-size: 13px; font-weight: 600; color: #ff2a85;">📱 Manual Transfer & UTR Submission</div>
+                <div style="font-size: 11px; color: #aaa; margin: 4px 0;">1. Copy UPI ID & Complete Payment</div>
+                <div class="upi-copy-row">
+                    <input type="text" id="displayUpiId" class="upi-input" value="vish87667@ptaxis" readonly>
+                    <button class="copy-btn" onclick="copyUpi()">COPY</button>
+                </div>
+                <div style="font-size: 11px; color: #aaa; margin: 4px 0;">2. Enter 12-Digit UTR / Ref No.</div>
+                <input type="text" class="utr-input" id="utrNumber" placeholder="Enter Ref No. after payment">
+                <button class="submit-utr-btn" onclick="submitUtrOrder()"><i class="fa-solid fa-lock"></i> Submit Payment Details</button>
+            </div>
 
-        <div class="sec-title">FEATURED PRODUCTS</div>
-        <div class="product-grid" id="storeProductGrid">
-            <div class="empty-msg">No products available right now. Add products from admin panel (`admin.html`).</div>
-        </div>
-    </div>
-        <div class="checkout-modal" id="checkoutModal">
-        <div class="checkout-box" style="background: #181818; padding: 25px; border-radius: 12px; width: 100%; max-width: 420px; border: 1px solid #333;">
-            <h2 style="color: #ff2a85; margin-bottom: 15px; font-size: 18px; text-align: center;">Secure Checkout Gateway</h2>
-            <p id="checkoutItemInfo" style="font-size: 13px; color: #aaa; margin-bottom: 15px; text-align: center;"></p>
-            
-            <input type="text" class="checkout-input" id="custName" placeholder="Full Name" style="width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px; margin-bottom: 10px; font-size: 13px;">
-            <input type="tel" class="checkout-input" id="custPhone" placeholder="Mobile Number" style="width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px; margin-bottom: 10px; font-size: 13px;">
-            <input type="text" class="checkout-input" id="custAddress" placeholder="Delivery Address" style="width: 100%; padding: 10px; background: #222; border: 1px solid #444; color: #fff; border-radius: 6px; margin-bottom: 10px; font-size: 13px;">
-
-            <div style="font-size: 13px; font-weight: 600; margin-bottom: 8px;">Select Payment Option:</div>
-            
-            <label class="pay-option" style="background: #222; border: 1px solid #444; padding: 12px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 14px;">
-                <input type="radio" name="payMethod" value="upi" checked style="accent-color: #ff2a85;"> 
-                <span><b>Online UPI / QR Code</b> (GPay, PhonePe, Paytm)</span>
-            </label>
-            
-            <label class="pay-option" style="background: #222; border: 1px solid #444; padding: 12px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 14px;">
-                <input type="radio" name="payMethod" value="cod" style="accent-color: #ff2a85;"> 
-                <span><b>Cash on Delivery (COD)</b> (Discreet packaging)</span>
-            </label>
-
-            <button class="continue-btn" style="width: 100%; background: #ff2a85; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 10px;" onclick="processPayment()">Proceed to Pay / Order</button>
-            <button class="continue-btn" style="width: 100%; background:#444; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: 600; cursor: pointer; margin-top: 8px;" onclick="closeCheckout()">Cancel</button>
+            <button class="shop-btn" style="width:100%; background:#333; margin-top:15px; padding:10px;" onclick="closeCheckout()">← Back to Store</button>
         </div>
     </div>
 
-    <footer class="footer" style="background-color: #121212; padding: 30px 20px 80px 20px; border-top: 1px solid #222; margin-top: 20px;">
-        <div class="footer-section" style="margin-bottom: 25px;">
-            <div class="footer-title" style="font-size: 15px; font-weight: 600; margin-bottom: 12px; color: #fff;">Follow Us</div>
-            <div class="social-icons" style="display: flex; gap: 12px;">
-                <a href="#" class="social-icon-box" style="background: #1f1f1f; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #fff; font-size: 20px; border: 1px solid #333; text-decoration: none;"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="social-icon-box" style="background: #1f1f1f; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #fff; font-size: 20px; border: 1px solid #333; text-decoration: none;"><i class="fa-brands fa-whatsapp"></i></a>
-                <a href="#" class="social-icon-box" style="background: #1f1f1f; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 4px; color: #fff; font-size: 20px; border: 1px solid #333; text-decoration: none;"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-        </div>
-
-        <div class="footer-section" style="margin-bottom: 25px;">
-            <div class="footer-title" style="font-size: 15px; font-weight: 600; margin-bottom: 12px; color: #fff;">Payment Options</div>
-            <div class="payment-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;">
-                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">VISA</div>
-                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">MasterCard</div>
-                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">UPI</div>
-                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">Paytm</div>
-                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">PayPal</div>
-                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">Net Banking</div>
-                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">COD</div>
-                <div class="payment-badge" style="background: #1f1f1f; border: 1px solid #333; padding: 8px 4px; text-align: center; border-radius: 4px; font-size: 10px; font-weight: 600; color: #ccc;">GPay</div>
-            </div>
-        </div>
-
-        <div class="copyright" style="background: #ff2a85; color: white; text-align: center; padding: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.5px; border-radius: 4px;">
-            ALL RIGHTS RESERVED 2018-2026 NAUGHTY NIGHTS
-        </div>
+    <footer class="footer">
+        <div class="copyright">© 2026 NAUGHTY NIGHTS • All Rights Reserved</div>
     </footer>
 
-    <div class="float-btns" style="position: fixed; bottom: 20px; right: 20px; display: flex; gap: 10px; z-index: 999;">
-        <a id="mainWaLink" href="https://wa.me/916262770811" target="_blank" class="wa-float" style="background: #25d366; color: white; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none;"><i class="fa-brands fa-whatsapp"></i></a>
-        <div class="chat-float" onclick="alert('Live Support Agent is online!')" style="background: #ff2a85; color: white; padding: 0 16px; height: 45px; border-radius: 25px; display: flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; box-shadow: 0 4px 10px rgba(255,42,133,0.4); cursor: pointer;"><i class="fa-solid fa-comment-dots"></i> Chat</div>
-    </div>
+    <a id="mainWaLink" href="https://wa.me/916262770811" target="_blank" class="wa-float"><i class="fa-brands fa-whatsapp"></i></a>
 
     <script>
         let cartCount = 0;
-        let selectedProductForCheckout = null;
 
-        function toggleMenu() {
-            let drawer = document.getElementById('menuDrawer');
-            drawer.classList.toggle('active');
-        }
-
-        function addToCart(title, price) {
-            cartCount++;
-            document.getElementById('cart-count').innerText = cartCount;
-            alert(`"${title}" successfully added to cart!`);
-        }
-
+        function toggleMenu() { document.getElementById('menuDrawer').classList.toggle('active'); }
+        function addToCart(title, price) { cartCount++; document.getElementById('cart-count').innerText = cartCount; alert(`"${title}" added to cart!`); }
+        
         function openCheckout(title, price) {
-            selectedProductForCheckout = { title, price };
-            document.getElementById('checkoutItemInfo').innerText = `Product: ${title} | Price: ${price}`;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('modalOrderId').innerText = "Order ID: NN-" + Math.floor(10 + Math.random() * 90);
+            
+            // Load dynamic UPI and QR from Admin Panel Settings
+            let customUpi = localStorage.getItem('store_upi');
+            if(customUpi) {
+                document.getElementById('displayUpiId').value = customUpi;
+                document.getElementById('displayQrImg').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=${customUpi}`;
+            }
+
+            let customQr = localStorage.getItem('store_qr');
+            if(customQr) {
+                document.getElementById('displayQrImg').src = customQr;
+            }
+
             document.getElementById('checkoutModal').style.display = 'flex';
         }
 
-        function closeCheckout() {
-            document.getElementById('checkoutModal').style.display = 'none';
+        function closeCheckout() { document.getElementById('checkoutModal').style.display = 'none'; }
+
+        function copyUpi() {
+            let upiText = document.getElementById('displayUpiId');
+            upiText.select();
+            navigator.clipboard.writeText(upiText.value);
+            alert("UPI ID Copied to Clipboard!");
         }
 
-        function processPayment() {
-            let name = document.getElementById('custName').value.trim();
-            let phone = document.getElementById('custPhone').value.trim();
-            let address = document.getElementById('custAddress').value.trim();
-            let payMethod = document.querySelector('input[name="payMethod"]:checked').value;
-
-            if(!name || !phone || !address) {
-                alert("Please fill in your delivery details!");
+        function submitUtrOrder() {
+            let utr = document.getElementById('utrNumber').value.trim();
+            if(utr.length < 6) {
+                alert("Please enter a valid 12-digit UTR / Ref Number!");
                 return;
             }
-
-            if(payMethod === 'upi') {
-                alert(`Redirecting to Secure UPI Payment Gateway for ${selectedProductForCheckout.price}... Please complete payment.`);
-            } else {
-                alert(`Order placed successfully via Cash on Delivery (COD) for ${selectedProductForCheckout.title}!`);
-            }
+            alert("Payment details submitted successfully! Your order is now being verified.");
             closeCheckout();
         }
 
-        function openCart() {
-            if(cartCount === 0) {
-                alert("Your cart is empty!");
-            } else {
-                alert(`You have ${cartCount} item(s) in your cart.`);
-            }
-        }
+        function openCart() { alert(cartCount === 0 ? "Cart is empty!" : `You have ${cartCount} item(s) in cart.`); }
 
         window.addEventListener('DOMContentLoaded', () => {
             let savedWa = localStorage.getItem('store_wa');
-            if(savedWa) {
-                document.getElementById('mainWaLink').href = "https://wa.me/" + savedWa;
-            }
+            if(savedWa) document.getElementById('mainWaLink').href = "https://wa.me/" + savedWa;
 
             let savedProducts = localStorage.getItem('store_products');
             if(savedProducts) {
@@ -510,9 +231,8 @@
                 if(products.length > 0) {
                     grid.innerHTML = "";
                     products.forEach(p => {
-                        let safeTitle = p.title.replace(/'/g, "\\'");
-                        let safePrice = p.price.replace(/'/g, "\\'");
-                        
+                        let t = p.title.replace(/'/g, "\\'");
+                        let pr = p.price.replace(/'/g, "\\'");
                         grid.innerHTML += `
                             <div class="product-card">
                                 <img src="${p.image}" class="product-img" alt="Product">
@@ -520,8 +240,8 @@
                                     <div class="product-title">${p.title}</div>
                                     <div class="new-price">${p.price}</div>
                                     <div class="btn-group">
-                                        <button class="add-cart-btn" onclick="addToCart('${safeTitle}', '${safePrice}')">Add Cart</button>
-                                        <button class="buy-now-btn" onclick="openCheckout('${safeTitle}', '${safePrice}')">Buy Now</button>
+                                        <button class="add-cart-btn" onclick="addToCart('${t}', '${pr}')">Cart</button>
+                                        <button class="buy-now-btn" onclick="openCheckout('${t}', '${pr}')">Buy Now</button>
                                     </div>
                                 </div>
                             </div>
