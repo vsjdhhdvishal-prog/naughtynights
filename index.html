@@ -10,11 +10,11 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
         body { background-color: #0b0b0b; color: #ffffff; overflow-x: hidden; }
         
-        /* Top Pink Announcement Bar */
+        /* Top Pink Announcement Bar (Number Removed) */
         .top-bar {
             background: #ff2a85;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             padding: 8px 16px;
             font-size: 12px;
@@ -98,10 +98,9 @@
 </head>
 <body>
 
-    <!-- Top Bar -->
+    <!-- Top Bar (Number Removed) -->
     <div class="top-bar">
         <div><i class="fa-solid fa-gift"></i> 100% Discreet</div>
-        <div><i class="fa-solid fa-phone"></i> <span id="topPhoneNum">8699684996</span></div>
     </div>
 
     <!-- Navbar -->
@@ -212,7 +211,7 @@
         </div>
     </div>
 
-    <!-- Footer Section (Matching your screenshots) -->
+    <!-- Footer Section -->
     <footer style="background-color: #121212; padding: 30px 20px 80px 20px; border-top: 1px solid #222; margin-top: 20px;">
         <div style="margin-bottom: 25px;">
             <div style="font-size: 15px; font-weight: 600; margin-bottom: 12px; color: #fff;">Follow Us</div>
@@ -310,7 +309,6 @@
             if(savedWa) {
                 document.getElementById('mainWaLink').href = "https://wa.me/" + savedWa;
                 document.getElementById('footerWa').href = "https://wa.me/" + savedWa;
-                document.getElementById('topPhoneNum').innerText = savedWa.replace("91", "");
             }
 
             let savedProducts = localStorage.getItem('store_products');
